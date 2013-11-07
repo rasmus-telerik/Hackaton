@@ -34,22 +34,8 @@
 					      function () { }, "Login failed", 'OK');
             }
       );      
-    },
-
-    onLogout: function () {
-      var that = this;
-
-      that.clearForm();
-      that.set("isLoggedIn", false);
-    },
-
-    clearForm: function () {
-      var that = this;
-
-      that.set("username", "");
-      that.set("password", "");
-    },
-
+    },    
+    
     checkEnter: function (e) {
       var that = this;
 
