@@ -10,6 +10,9 @@
 
 	app.application = new kendo.mobile.Application(document.body, { layout: "tabstrip-layout", statusBarStyle: statusBarStyle });
 
+	app.el = new Everlive('NFtPBKs75ALYLvLH');
+	window.location.href = "#view-login";
+
 	app.changeSkin = function (e) {
 		if (e.sender.element.text() === "Flat") {
 			e.sender.element.text("Native");

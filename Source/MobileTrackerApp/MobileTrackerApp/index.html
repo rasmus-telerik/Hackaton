@@ -21,46 +21,6 @@
 
 </head>
 <body>
-
-	<!--Login-->
-	<div id="tabstrip-login"
-		data-role="view"
-		data-title="Login"
-		data-model="app.loginService.viewModel">
-
-		<div class="view-content">
-			<div class="logo"></div>
-			<h3 data-bind="invisible: isLoggedIn">Enter your credentials:</h3>
-			<h1 class="welcome" data-bind="visible: isLoggedIn">Welcome, <span data-bind="text: username"></span>!
-			</h1>
-			<div class="buttonArea">
-				<input type="submit" id="logout" data-role="button" data-bind="click: onLogout, visible: isLoggedIn" class="login-button" value="Logout" />
-			</div>
-
-			<form data-bind="events: { keyup: checkEnter }">
-				<ul data-role="listview" data-style="inset" data-bind="invisible: isLoggedIn">
-					<li>
-						<label>
-							Username
-								<input type="text" data-bind="value: username" />
-						</label>
-					</li>
-					<li>
-						<label>
-							Password
-								<input type="password" data-bind="value: password" />
-						</label>
-					</li>
-				</ul>
-
-				<div class="buttonArea">
-					<input type="submit" id="login" data-role="button" data-bind="click: onLogin, invisible: isLoggedIn" class="login-button" value="Login" />
-				</div>
-			</form>
-		</div>
-
-	</div>
-
   <div id="tabstrip-routes"
        data-role="view"
        data-title="Routes"
@@ -99,12 +59,44 @@
         <a data-role="button" data-bind="events:{click:onNavigateToCustomer}">Navigate</a>
       </div>
     </script>
+  </div>
 
+  <div data-role="view"
+       data-model="app.loginService.viewModel"
+       id="view-login">
+    <div class="logo"></div>
+    <h3 data-bind="invisible: isLoggedIn">Enter your credentials:</h3>
+    <h1 class="welcome" data-bind="visible: isLoggedIn">
+      Welcome, <span data-bind="text: username"></span>!
+    </h1>
+    <div class="buttonArea">
+      <input type="submit" id="logout" data-role="button" data-bind="click: onLogout, visible: isLoggedIn" class="login-button" value="Logout" />
+    </div>
+
+    <form data-bind="events: { keyup: checkEnter }">
+      <ul data-role="listview" data-style="inset" data-bind="invisible: isLoggedIn">
+        <li>
+          <label>
+            Username
+            <input type="text" data-bind="value: username" />
+          </label>
+        </li>
+        <li>
+          <label>
+            Password
+            <input type="password" data-bind="value: password" />
+          </label>
+        </li>
+      </ul>
+
+      <div class="buttonArea">
+        <input type="submit" id="login" data-role="button" data-bind="click: onLogin, invisible: isLoggedIn" class="login-button" value="Login" />
+      </div>
+    </form>
   </div>
 
 	<!--Layout-->
 	<div data-role="layout" data-id="tabstrip-layout">
-
 		<!--Header-->
 		<div data-role="header">
 			<div data-role="navbar">
@@ -113,13 +105,15 @@
 		</div>
 
 		<!--Footer-->
-		<div data-role="footer">
+		<div id="footer" data-role="footer">
 			<div data-role="tabstrip">
-				<a href="#tabstrip-login" data-icon="contacts">Login</a>
-        <a href="#tabstrip-routes" data-icon="globe">Routes</a>
+				<a href="#tabstrip-routes" data-icon="globe">Routes</a>
         <a href="#tabstrip-driving" data-icon="globe">Driving</a>				
 			</div>
 		</div>
 	</div>
+  <script>
+    $('#footer').hide();
+  </script>
 </body>
 </html>

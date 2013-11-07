@@ -2,8 +2,9 @@
   var LoginViewModel,
 	pp = global.app = global.app || {};
 
-  el = new Everlive('NFtPBKs75ALYLvLH');
-
+  //while debugging
+  //pp.el.Users.login("Thomas", "tha");
+  
   LoginViewModel = kendo.data.ObservableObject.extend({
     isLoggedIn: false,
     username: "",
@@ -14,15 +15,18 @@
 				username = that.get("username").trim(),
 				password = that.get("password").trim();
 
-      if (username === "" || password === "") {
-        navigator.notification.alert("Both fields are required!",
-					function () { }, "Login failed", 'OK');
-        return;
-      }
+      //if (username === "" || password === "") {
+      //  navigator.notification.alert("Both fields are required!",
+			//		function () { }, "Login failed", 'OK');
+      //  return;
+      //}
 
-      el.Users.login(username, password)
-      .then(function () {
-        that.set("isLoggedIn", true);        
+      //pp.el.Users.login(username, password)
+      pp.el.Users.login("Thomas", "tha")
+      .then(function () {        
+        $('#footer').show();
+        that.set("isLoggedIn", true);
+        window.location.href = "#tabstrip-routes";
       })
       .then(null,
             function (err) {
