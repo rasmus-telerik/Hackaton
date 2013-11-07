@@ -7,7 +7,19 @@
   el.Users.login("Thomas", "tha");
 
   DrivingViewModel = kendo.data.ObservableObject.extend({
-    routes: [],
+    tasks: [],
+
+    getTasksForDriver: function (id) {
+      var data = Everlive.$.data('Tasks');
+      var query = new Everlive.Query();
+      query.where().eq('Route', id).done().select("Id", "Description", "Location", "TimeInMin");
+      //query.select("Id","Description", "Location", "TimeInMin");
+      data.get(query).then(function (data) {
+        app.drivingService.viewModel.tasks = data.result;
+        app.drivingService.viewModel.trigger("change", { field: "tasks" });
+      });
+    }
+
   });
 
   app.drivingService = {

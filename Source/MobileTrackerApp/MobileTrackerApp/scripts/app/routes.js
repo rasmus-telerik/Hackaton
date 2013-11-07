@@ -15,10 +15,12 @@
   });
 
   RouteViewModel = kendo.data.ObservableObject.extend({
-    routes: [{StartTime:"test"}]
+    routes: [],
+    onActivateRoute: function (e) {
+      global.app.drivingService.viewModel.getTasksForDriver(e.data.Id);
+      window.location.href = "#tabstrip-driving";
+    }
   });
-
-
 
   app.routeService = {
     viewModel: new RouteViewModel()
