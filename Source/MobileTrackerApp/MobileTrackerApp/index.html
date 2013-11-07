@@ -24,12 +24,13 @@
   <div id="tabstrip-routes"
        data-role="view"
        data-title="Routes"
+       data-before-show="app.routeService.viewModel.beforeShow"
        data-model="app.routeService.viewModel">
 
     <div class="view-content">
       <h3>Routes</h3>
       <div id="routes">
-        <div data-role="listview" data-bind="source:routes" data-selectable="single" data-template="route-template" id="routeList"></div>        
+        <div data-role="listview" data-bind="source:routes" data-selectable="single" data-template="route-template" id="routeList"></div>
       </div>
     </div>
 
