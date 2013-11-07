@@ -18,6 +18,7 @@
     },
     onActivateRoute: function (e) {
       global.app.drivingService.viewModel.getTasksForDriver(e.data.Id);
+      global.app.drivingService.viewModel.startGpsCollection();
       window.location.href = "#tabstrip-driving";
     }
   });

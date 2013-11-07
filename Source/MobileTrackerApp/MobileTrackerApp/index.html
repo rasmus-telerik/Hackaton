@@ -48,8 +48,13 @@
        data-model="app.drivingService.viewModel">
 
     <div class="view-content">
-      <h3>Driving</h3>
       <div id="tasks">
+         <div>
+           <h3>Current location</h3>
+           <span data-bind="text:latitude"></span>
+           <span>-</span>
+           <span data-bind="text:longitude"></span>
+         </div>
         <div data-role="listview" data-auto-bind="false" data-bind="source:tasks" data-selectable="single" data-template="task-template" id="taskList"></div>
       </div>
     </div>
@@ -102,6 +107,7 @@
 		<div data-role="header">
 			<div data-role="navbar">
 				<span data-role="view-title"></span>
+        <a data-role="button" class="header-button" data-bind="invisible: app.drivingService.viewModel.gpsIsRunning">stop</a>
 			</div>
 		</div>
 
