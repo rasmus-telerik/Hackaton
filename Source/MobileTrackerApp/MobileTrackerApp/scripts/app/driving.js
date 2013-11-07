@@ -21,7 +21,7 @@
     },
 
     startGpsCollection: function () {
-      this.gpsIsRunning = true;
+      this.set("gpsIsRunning", true);
       var that = this;
       that.collectLocation();
       this.gpsTimer = setInterval(function () {
@@ -52,7 +52,7 @@
         
     },
     stopGpsCollection: function () {
-      this.gpsIsRunning = false;
+      this.set("gpsIsRunning", false);
       clearInterval(this.gpsTimer);
     },
     onNavigateToCustomer: function (id) {
