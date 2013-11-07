@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<title></title>
@@ -11,15 +11,19 @@
 	<script src="kendo/js/kendo.mobile.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
 
+
+  <script src="scripts/lib/everlive.all.min.js"></script>
+
 	<script src="scripts/login.js"></script>
 	<script src="scripts/location.js"></script>
-	<script src="scripts/weather.js"></script>
+  <script src="scripts/scan.js"></script>
+  <script src="scripts/timeback.js"></script>
 	<script src="scripts/app.js"></script>
-
+  
 </head>
 <body>
 	<!--Home-->
-	<div id="tabstrip-home"
+	<!--<div id="tabstrip-home"
 		data-role="view"
 		data-title="Home">
 
@@ -33,10 +37,10 @@
 			</p>
 			<div class="img"></div>
 		</div>
-	</div>
+	</div>-->
 
 	<!--Login-->
-	<div id="tabstrip-login"
+	<!--<div id="tabstrip-login"
 		data-role="view"
 		data-title="Login"
 		data-model="app.loginService.viewModel">
@@ -72,69 +76,36 @@
 			</form>
 		</div>
 
-	</div>
+	</div>-->
 
-	<!--Location-->
-	<div id="tabstrip-location"
+  <div id="tabstrip-scan"
+       data-role="view"
+       data-title="Scan you QR code"
+       data-model="app.scanService.viewModel"   >
+
+    <div class="view-content">
+      <h3>Scan you service code:</h3>
+      
+      <a id="start-scan" data-click="app.onStartScan"><img src="img/qr-scanner.jpg" /></a>
+      </div>
+ </div>
+
+	
+	<!--timeback view-->
+	<div id="tabstrip-timeback"
 		data-role="view"
-		data-title="Location"
-		data-init="app.locationService.initLocation"
-		data-show="app.locationService.show"
-		data-hide="app.locationService.hide"
-		data-model="app.locationService.viewModel"
-		data-stretch="true">
+		data-model="app.timebackService.viewModel">
 
-		<div id="no-map" data-bind="invisible: isGoogleMapsInitialized">
-			Location requires internet connection to display the map.
-		</div>
-		<div id="map-search-wrap" data-bind="visible: isGoogleMapsInitialized">
-			<button id="map-navigate-home" data-bind="click: onNavigateHome"></button>
-			<form onsubmit="return false;">
-				<input id="map-address" type="search" data-bind="value: address" placeholder="Address" />
-				<input id="map-search" type="submit" value="" data-bind="click: onSearchAddress" />
-			</form>
-		</div>
-		<div id="map-canvas" data-bind="visible: isGoogleMapsInitialized"></div>
+    <div class="view-content">
 
+      <div id="timebacktext">~ min</div>
+
+      <div class="subtext">
+        until we are there
+      </div>
+
+    </div>
 	</div>
-
-	<!--Weather-->
-	<div id="tabstrip-weather"
-		data-role="view"
-		data-title="Weather"
-		data-model="app.weatherService.viewModel">
-
-		<div class="weather">
-			<p class="weather-title">20-Day Forecast</p>
-
-			<div class="separator">
-				<div class="dark"></div>
-				<div class="light"></div>
-			</div>
-
-			<ul class="forecast-list"
-				data-role="listview"
-				data-bind="source: weatherDataSource"
-				data-template="weather-forecast-template">
-			</ul>
-		</div>
-	</div>
-
-	<!--Weather forecast template-->
-	<script type="text/x-kendo-tmpl" id="weather-forecast-template">
-		<div>
-			<div class="position-left">
-				<span class="weather-info date">${day}</span>
-			</div>
-			<div class="position-right">
-				<span class="weather-info temperature high">${highTemperature}<sup>&deg;</sup></span>
-				<span class="weather-info temperature low">${lowTemperature}<sup>&deg;</sup></span>
-			</div>
-			<div class="position-center">
-				<span class="weather-icon ${image}"></span>
-			</div>
-		</div>
-	</script>
 
 	<!--Layout-->
 	<div data-role="layout" data-id="tabstrip-layout">
@@ -149,10 +120,8 @@
 		<!--Footer-->
 		<div data-role="footer">
 			<div data-role="tabstrip">
-				<a href="#tabstrip-home" data-icon="home">Home</a>
-				<a href="#tabstrip-login" data-icon="contacts">Login</a>
-				<a href="#tabstrip-location" data-icon="search">Location</a>
-				<a href="#tabstrip-weather" data-icon="globe">Weather</a>
+				<a href="#tabstrip-scan" data-icon="search">Scan</a>
+        <a href="#tabstrip-timeback" data-icon="globe">Timeback</a>
 			</div>
 		</div>
 	</div>
