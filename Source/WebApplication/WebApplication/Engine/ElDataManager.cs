@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using Telerik.Everlive.Sdk.Core;
 using Telerik.Everlive.Sdk.Core.Linq.Translators;
+using Telerik.Everlive.Sdk.Core.Model.Base;
+using Telerik.Everlive.Sdk.Core.Model.System;
 using Telerik.Everlive.Sdk.Core.Query.Definition.Sorting;
 using WebApplication.Engine.Model;
 
@@ -20,160 +24,101 @@ namespace WebApplication.Engine
 
         public ElDataManager()
         {
-            this.app = new EverliveApp("NFtPBKs75ALYLvLH");
-            this.app.WorkWith().Authentication().Login("7YGY2GHctdzRB36kLiY5HwyWhgG2TN4W")
-                .ExecuteSync();
+            this.app = new EverliveApp(new EverliveAppSettings()
+                {
+                    ApiKey = "NFtPBKs75ALYLvLH"
+                });
+            this.app.WorkWith().Authentication().Login("7YGY2GHctdzRB36kLiY5HwyWhgG2TN4W").ExecuteSync();
         }
 
-        #region Routes
+        #region Common
 
-        public void CreateRoute(Route route)
+        public void Create<T>(T item) where T : DataItem
         {
-            this.App.WorkWith().Data<Route>().Create(route).ExecuteSync();
+            this.App.WorkWith().Data<T>().Create(item).ExecuteSync();
         }
 
-        public Route GetRouteById(Guid id)
+        public T GetById<T>(Guid id) where T : DataItem
         {
-            return this.App.WorkWith().Data<Route>().GetById(id).ExecuteSync();
+            return this.App.WorkWith().Data<T>().GetById(id).ExecuteSync();
         }
 
-        public int GetRoutesCountByCompany(Guid companyId)
+        public int GetAllCount<T>() where T : DataItem
         {
-            return App.WorkWith().Data<Route>().GetCount()
-                .Where(r => r.CompanyID == companyId)
-                .ExecuteSync();
+            return this.App.WorkWith().Data<T>().GetCount().ExecuteSync();
         }
 
-        public IEnumerable<Route> GetRoutesByCompany(Guid companyId, int skip, int take, bool latestOnTop = true)
+        public IEnumerable<T> GetAll<T>(int skip, int take, bool lastOnTop = true) where T : DataItem
         {
-            var direction = latestOnTop ? OrderByDirection.Ascending : OrderByDirection.Descending;
-            SortingDefinition sortDesc = new SortingDefinition("CreatedAt", direction);
-            return this.App.WorkWith().Data<Route>().Get()
-                .Where(r => r.CompanyID == companyId)
-                .SetSorting(sortDesc)
-                .Skip(skip)
-                .Take(take)
-                .ExecuteSync();
+            var sortDirection = lastOnTop ? OrderByDirection.Descending : OrderByDirection.Ascending;
+            var sort = new SortingDefinition("CreatedAt", sortDirection);
+            return this.App.WorkWith().Data<T>().Get().SetSorting(sort).Skip(skip).Take(take).ExecuteSync();
         }
 
-        public void UpdateRoute(Route route)
+        public void Update<T>(T item) where T : DataItem
         {
-            this.App.WorkWith().Data<Route>().Update(route).ExecuteSync();
+            this.App.WorkWith().Data<T>().Update(item);
         }
 
-        public void DeleteRoute(Guid id)
+        public void Delete<T>(Guid id) where T : DataItem
         {
-            this.App.WorkWith().Data<Route>().Delete(id);
+            this.App.WorkWith().Data<T>().Delete(id);
         }
 
         #endregion
 
         #region Companies
 
-        public void CreateCompany(Company company)
-        {
-            this.App.WorkWith().Data<Company>().Create(company).ExecuteSync();
-        }
-
-        public Company GetCompanyById(Guid id)
-        {
-            return this.App.WorkWith().Data<Company>().GetById(id).ExecuteSync();
-        }
-
         public IEnumerable<Company> GetCompaniesByOwner(Guid ownerId)
         {
-            return this.App.WorkWith().Data<Company>().Get()
-                .Where(c => c.Owner == ownerId)
-                .ExecuteSync();
+            return this.App.WorkWith().Data<Company>().Get().Where(c => c.Owner == ownerId).ExecuteSync();
         }
 
-        public int GetCompaniesCount()
+        #endregion
+
+        #region Routes
+
+        public int GetRoutesCountByCompany(Guid companyId)
         {
-            return App.WorkWith().Data<Company>().GetCount()
-                .ExecuteSync();
+            return this.App.WorkWith().Data<Route>().GetCount().Where(r => r.CompanyID == companyId).ExecuteSync();
         }
 
-        public IEnumerable<Company> GetCompanies(int skip, int take, bool latestOnTop = true)
+        public IEnumerable<Route> GetRoutesByCompany(Guid companyId, int skip, int take, bool lastOnTop = true)
         {
-            var direction = latestOnTop ? OrderByDirection.Ascending : OrderByDirection.Descending;
-            SortingDefinition sortDesc = new SortingDefinition("CreatedAt", direction);
-            return this.App.WorkWith().Data<Company>().Get()
-                .SetSorting(sortDesc)
-                .Skip(skip)
-                .Take(take)
-                .ExecuteSync();
-        }
-
-        public void UpdateCompany(Company company)
-        {
-            this.App.WorkWith().Data<Company>().Update(company).ExecuteSync();
-        }
-
-        public void DeleteCompany(Guid id)
-        {
-            this.App.WorkWith().Data<Company>().Delete(id);
+            var sortDirection = lastOnTop ? OrderByDirection.Descending : OrderByDirection.Ascending;
+            var sort = new SortingDefinition("CreatedAt", sortDirection);
+            return this.App.WorkWith().Data<Route>().Get()
+                .Where(r => r.CompanyID == companyId).SetSorting(sort).Skip(skip).Take(take).ExecuteSync();
         }
 
         #endregion
 
         #region Tasks
 
-        public void CreateTask(Task task)
-        {
-            this.App.WorkWith().Data<Task>().Create(task).ExecuteSync();
-        }
-
-        public Task GetTaskById(Guid id)
-        {
-            return this.App.WorkWith().Data<Task>().GetById(id).ExecuteSync();
-        }
-
         public int GetTasksCountByRoute(Guid routeId)
         {
-            return App.WorkWith().Data<Task>().GetCount()
-                .Where(t => t.Route == routeId)
-                .ExecuteSync();
+            return this.App.WorkWith().Data<Task>().GetCount().Where(r => r.Route == routeId).ExecuteSync();
         }
 
-        public IEnumerable<Task> GetTasksByRoute(Guid routeId, int skip, int take, bool latestOnTop = true)
+        public IEnumerable<Task> GetTasksByRoute(Guid routeId, int skip, int take, bool lastOnTop = true)
         {
-            var direction = latestOnTop ? OrderByDirection.Ascending : OrderByDirection.Descending;
-            SortingDefinition sortDesc = new SortingDefinition("CreatedAt", direction);
+            var sortDirection = lastOnTop ? OrderByDirection.Descending : OrderByDirection.Ascending;
+            var sort = new SortingDefinition("CreatedAt", sortDirection);
             return this.App.WorkWith().Data<Task>().Get()
-                .Where(t => t.Route == routeId)
-                .SetSorting(sortDesc)
-                .Skip(skip)
-                .Take(take)
-                .ExecuteSync();
+                .Where(t => t.Route == routeId).SetSorting(sort).Skip(skip).Take(take).ExecuteSync();
         }
 
         public int GetTasksCountByCustomer(Guid customerId)
         {
-            return App.WorkWith().Data<Task>().GetCount()
-                .Where(t => t.Customer == customerId)
-                .ExecuteSync();
+            return this.App.WorkWith().Data<Task>().GetCount().Where(r => r.Customer == customerId).ExecuteSync();
         }
 
-        public IEnumerable<Task> GetTasksByCustomer(Guid customerId, int skip, int take, bool latestOnTop = true)
+        public IEnumerable<Task> GetTasksByCustomer(Guid customerId, int skip, int take, bool lastOnTop = true)
         {
-            var direction = latestOnTop ? OrderByDirection.Ascending : OrderByDirection.Descending;
-            SortingDefinition sortDesc = new SortingDefinition("CreatedAt", direction);
+            var sortDirection = lastOnTop ? OrderByDirection.Descending : OrderByDirection.Ascending;
+            var sort = new SortingDefinition("CreatedAt", sortDirection);
             return this.App.WorkWith().Data<Task>().Get()
-                .Where(t => t.Customer == customerId)
-                .SetSorting(sortDesc)
-                .Skip(skip)
-                .Take(take)
-                .ExecuteSync();
-        }
-
-        public void UpdateTask(Task task)
-        {
-            this.App.WorkWith().Data<Task>().Update(task).ExecuteSync();
-        }
-
-        public void DeleteTask(Guid id)
-        {
-            this.App.WorkWith().Data<Task>().Delete(id);
+                .Where(t => t.Customer == customerId).SetSorting(sort).Skip(skip).Take(take).ExecuteSync();
         }
 
         #endregion

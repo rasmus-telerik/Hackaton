@@ -1,9 +1,11 @@
 ﻿using System;
 using Telerik.Everlive.Sdk.Core.Model.Base;
 using Telerik.Everlive.Sdk.Core.Model.System;
+using Telerik.Everlive.Sdk.Core.Serialization;
 
 namespace WebApplication.Engine.Model
 {
+    [ServerType("Tasks")]
     public class Task : DataItem
     {
         private Guid route;
