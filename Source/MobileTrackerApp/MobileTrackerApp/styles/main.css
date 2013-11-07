@@ -13,6 +13,15 @@ body, html {
   height:30px;
 }
 
+.task-element h3{
+  display:inline-block;
+}
+
+.task-element button{
+  display:inline-block;
+  height:30px;
+}
+
 
 /* COMMON STYLES*/
 .view-content h1 {
@@ -26,7 +35,7 @@ body, html {
 
 .view-content h3 {
 	color: #42454a;
-	font-size: 1.1em;
+	font-size: 1.0em;
 }
 
 .view-content p {
