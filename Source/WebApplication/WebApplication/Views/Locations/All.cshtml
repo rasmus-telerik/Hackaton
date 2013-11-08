@@ -10,11 +10,15 @@
     $(document).ready(function () {
         addLocationKendoWindow = $("#addLocationWindow").kendoWindow({
             width: "500px",
-            title: "Add new location"
-        });
+            title: "Add new location",
+            actions: [
+                "Close"
+            ]
+        }).data("kendoWindow");
 
         $("#addLocationLink").click(function () {
-            addLocationKendoWindow.show();
+            addLocationKendoWindow.open();
+            addLocationKendoWindow.center();
         });
     });
 </script>
@@ -23,15 +27,15 @@
 <div id="addLocationWindow" style="display: none;">
     <form>
         <label for="customer">CUSTOMER</label>
-        <input id="customer" type="text" />
+        <input id="customer" type="text" style="width: 90%" />
         <label for="visit">VISIT</label>
-        <textarea id="visit" rows="3">
+        <textarea id="visit" rows="3" style="width: 90%">
         </textarea>
         <label for="address">ADDRESS</label>
-        <textarea id="address" rows="3">
+        <textarea id="address" rows="3" style="width: 90%">
         </textarea>
         <input type="submit" value="Add location">
-        <button value="Cancel" onclick="addLocationKendoWindow.close();" />
+        <button onclick="addLocationKendoWindow.close();">Cancel</button>
     </form>
 </div>
 
