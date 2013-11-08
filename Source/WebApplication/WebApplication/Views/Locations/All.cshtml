@@ -4,12 +4,43 @@
     ViewBag.Title = "All";
 }
 
+@section scripts{
+<script>
+    var addLocationKendoWindow;
+    $(document).ready(function () {
+        addLocationKendoWindow = $("#addLocationWindow").kendoWindow({
+            width: "500px",
+            title: "Add new location"
+        });
+
+        $("#addLocationLink").click(function () {
+            addLocationKendoWindow.show();
+        });
+    });
+</script>
+}
+
+<div id="addLocationWindow" style="display: none;">
+    <form>
+        <label for="customer">CUSTOMER</label>
+        <input id="customer" type="text" />
+        <label for="visit">VISIT</label>
+        <textarea id="visit" rows="3">
+        </textarea>
+        <label for="address">ADDRESS</label>
+        <textarea id="address" rows="3">
+        </textarea>
+        <input type="submit" value="Add location">
+        <button value="Cancel" onclick="addLocationKendoWindow.close();" />
+    </form>
+</div>
+
 <div class="page-header">
     <h1>Locations</h1>
     <a href="">Plan routes</a>
 </div>
 
-<a href=""><img src="" /> Add location</a>
+<a id="addLocationLink"><img src="" /> Add location</a>
 
 <table>
     <tr>

@@ -10,7 +10,8 @@ namespace WebApplication
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/OnePageScroll/jquery.onepage-scroll.js"));
+                        "~/Scripts/OnePageScroll/jquery.onepage-scroll.js",
+                        "~/Scripts/kendo.web.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
@@ -23,7 +24,9 @@ namespace WebApplication
                         "~/Content/Site.css",
                         "~/Content/Legacy.css",
                         "~/Content/OnePageScroll/onepage-scroll.css",
-                        "~/Content/OnePageScroll/Home.css"));
+                        "~/Content/OnePageScroll/Home.css",
+                        "~/Content/kendo.default.css",
+                        "~/Content/kendo.common.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
