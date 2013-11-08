@@ -122,5 +122,14 @@ namespace WebApplication.Engine
         }
 
         #endregion
+
+        #region Users
+
+        public User GetUserById(Guid id)
+        {
+            return this.App.WorkWith().Users().GetById(id).ExecuteSync();
+        }
+
+        #endregion
     }
 }
