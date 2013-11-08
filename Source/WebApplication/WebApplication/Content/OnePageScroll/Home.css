@@ -93,13 +93,14 @@ header .content-wrapper {
     text-align: center;
     position: fixed;
     right: 70%;
-    margin-right: -490px;
-    margin-top: 150px;
-    width: 980px;
+    margin-right: -900px;
+    margin-top: 200px;
+    width: 1200px;
 }
 
     .page-3 .d-wrapper div {
         float: left;
+        width: 400px;
     }
 
     .page-3 .d-wrapper img {
