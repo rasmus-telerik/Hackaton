@@ -26,6 +26,7 @@ namespace WebApplication.Models
         public int UserId { get; set; }
         public string UserName { get; set; }
         public Guid EverliveGuid { get; set; }
+        public IEnumerable<Guid> Tasks { get; set; }
     }
 
     public class RegisterExternalLoginModel

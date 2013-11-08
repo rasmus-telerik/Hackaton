@@ -4,26 +4,11 @@ using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
-    [Authorize(Roles = "Dispatcher")]
-    public class RouteDispatchController : Controller
+    public class RouteDispatchController : BaseDispatchController
     {
-        readonly UsersContext context;
-        public UserProfile EntityUser
-        {
-            get
-            {
-                return this.context.UserProfiles.FirstOrDefault(u => u.UserName == this.User.Identity.Name);
-            }
-        }
-
-        public RouteDispatchController()
-        {
-            this.context = new UsersContext();
-        }
-
         public ActionResult All()
         {
-            // get the everlive user by using the id of the entity user
+            // get the everlive user by using the id of the user
             return View();
         }
 
