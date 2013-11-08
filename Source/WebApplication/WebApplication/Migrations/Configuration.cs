@@ -44,22 +44,26 @@ namespace WebApplication.Migrations
             if (!WebSecurity.UserExists("DispatcherGuy"))
                 WebSecurity.CreateUserAndAccount(
                     "DispatcherGuy",
-                    "manages");
+                    "manages",
+                    new { EverliveGuid = new Guid() });
 
             if (!WebSecurity.UserExists("DeliveryGuy"))
                 WebSecurity.CreateUserAndAccount(
                     "DeliveryGuy",
-                    "delivers");
+                    "delivers",
+                    new { EverliveGuid = new Guid() });
 
             if (!WebSecurity.UserExists("JohnSmith"))
                 WebSecurity.CreateUserAndAccount(
                     "JohnSmith",
-                    "receives");
+                    "receives",
+                    new { EverliveGuid = new Guid() });
 
             if (!WebSecurity.UserExists("Dragan"))
                 WebSecurity.CreateUserAndAccount(
                     "Dragan",
-                    "receives");
+                    "receives",
+                    new { EverliveGuid = new Guid() });
 
             if (!Roles.GetRolesForUser("DispatcherGuy").Contains("Dispatcher"))
             {

@@ -29,6 +29,9 @@
     position: fixed;
     margin-bottom: 0;
     z-index: 10;
+    right: 50%;
+    margin-right: -400px;
+    width: 800px;
 }
 
 .content-wrapper 
@@ -40,4 +43,20 @@
 header .content-wrapper 
 {
     padding-top: 20px; 
+}
+
+.page-1 h1 
+{
+    font-size: 4em;
+    margin-top: 150px;
+    top: 0;
+    position: absolute;
+    width: 500px;
+    margin-left: 75px;
+}
+
+.page-1 h1 p
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

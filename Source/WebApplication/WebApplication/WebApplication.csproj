@@ -186,6 +186,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RouteDispatchController.cs" />
     <Compile Include="Engine\ElDataManager.cs" />
     <Compile Include="Engine\Model\Company.cs" />
     <Compile Include="Engine\Model\Route.cs" />
