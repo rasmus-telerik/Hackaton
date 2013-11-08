@@ -10,6 +10,8 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using WebApplication.Filters;
 using WebApplication.Models;
+using WebApplication.Engine;
+using Telerik.Everlive.Sdk.Core.Model.System;
 
 namespace WebApplication.Controllers
 {
@@ -79,7 +81,16 @@ namespace WebApplication.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                    var mgr = new ElDataManager();
+                    var userId = mgr.Create(new User()
+                        {
+                            DisplayName = model.UserName,
+                            Username = model.UserName,
+                            Password = model.Password
+                        });
+                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password, new { EverliveGuid = userId });
+                    Roles.AddUsersToRoles(new[] { model.UserName }, new[] { "Dispatcher" });
+
                     WebSecurity.Login(model.UserName, model.Password);
                     return RedirectToAction("Index", "Home");
                 }
