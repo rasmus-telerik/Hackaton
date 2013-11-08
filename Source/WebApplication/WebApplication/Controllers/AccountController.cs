@@ -92,7 +92,7 @@ namespace WebApplication.Controllers
                     Roles.AddUsersToRoles(new[] { model.UserName }, new[] { "Dispatcher" });
 
                     WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("All", "Locations");
                 }
                 catch (MembershipCreateUserException e)
                 {
@@ -348,7 +348,7 @@ namespace WebApplication.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("All", "Locations");
             }
         }
 
