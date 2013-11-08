@@ -6,15 +6,23 @@
 
   RouteViewModel = kendo.data.ObservableObject.extend({
     routes: [],
-    beforeShow: function (event) { 
-      var data = Everlive.$.data('Routes');
-      var query = new Everlive.Query();
-      //query.where().eq('Driver', app.el.User.Id).Done().select("StartTime");
-      query.select("Id","StartTime", "CurrentPosition");
-      data.get(query).then(function (data) {
-        app.routeService.viewModel.routes = data.result;
-        app.routeService.viewModel.trigger("change", { field: "routes" });
+    beforeShow: function (event) {
+
+      Everlive.$.Users.currentUser().then(function (userdata) {
+        var data = Everlive.$.data('Routes');
+        var query = new Everlive.Query();
+        query.where().eq('Driver', userdata.result.Id).Done().select("Id", "StartTime", "CurrentPosition");
+        //query.select("Id", "StartTime", "CurrentPosition");
+        data.get(query).then(function (data) {
+          app.routeService.viewModel.routes = data.result;
+          app.routeService.viewModel.trigger("change", { field: "routes" });
+        });
+
+      },
+      function (error) {
+        alert(JSON.stringify(error));
       });
+      
     },
     onActivateRoute: function (e) {
       global.app.drivingService.viewModel.getTasksForRoute(e.data);

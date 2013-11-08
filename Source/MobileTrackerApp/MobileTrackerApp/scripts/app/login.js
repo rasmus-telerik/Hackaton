@@ -22,7 +22,7 @@
       //}
 
       //pp.el.Users.login(username, password)
-      pp.el.Users.login("Thomas", "tha")
+      pp.el.Users.login("Thomas (Driver)", "tha")
       .then(function () {        
         $('#footer').show();
         that.set("isLoggedIn", true);
