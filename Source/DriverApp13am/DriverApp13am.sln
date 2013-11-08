@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}") = "MobileTrackerApp", "MobileTrackerApp\MobileTrackerApp.iceproj", "{06E98988-56E4-4C25-A203-945CE59B5A23}"
+Project("{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}") = "DriverApp13am", "DriverApp13am\DriverApp13am.iceproj", "{06E98988-56E4-4C25-A203-945CE59B5A23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
