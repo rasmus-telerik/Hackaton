@@ -14,7 +14,7 @@ namespace WebApplication.Engine
     public class ElDataManager
     {
         private EverliveApp app;
-        protected EverliveApp App
+        public EverliveApp App
         {
             get
             {
@@ -33,9 +33,9 @@ namespace WebApplication.Engine
 
         #region Common
 
-        public void Create<T>(T item) where T : DataItem
+        public Guid Create<T>(T item) where T : DataItem
         {
-            this.App.WorkWith().Data<T>().Create(item).ExecuteSync();
+            return this.App.WorkWith().Data<T>().Create(item).ExecuteSync().Id;
         }
 
         public T GetById<T>(Guid id) where T : DataItem
@@ -57,12 +57,17 @@ namespace WebApplication.Engine
 
         public void Update<T>(T item) where T : DataItem
         {
-            this.App.WorkWith().Data<T>().Update(item);
+            this.App.WorkWith().Data<T>().Update(item).ExecuteSync();
         }
 
         public void Delete<T>(Guid id) where T : DataItem
         {
-            this.App.WorkWith().Data<T>().Delete(id);
+            this.App.WorkWith().Data<T>().Delete(id).ExecuteSync();
+        }
+
+        public void SetOwner<T>(Guid itemId, Guid newOwnerId) where T : DataItem
+        {
+            this.App.WorkWith().Data<T>().SetOwner(itemId, newOwnerId).ExecuteSync();
         }
 
         #endregion
@@ -121,13 +126,39 @@ namespace WebApplication.Engine
                 .Where(t => t.Customer == customerId).SetSorting(sort).Skip(skip).Take(take).ExecuteSync();
         }
 
+        public IEnumerable<Task> GetTasksByOwner(Guid ownerId, int skip, int take, bool lastOnTop = true)
+        {
+            var sortDirection = lastOnTop ? OrderByDirection.Descending : OrderByDirection.Ascending;
+            var sort = new SortingDefinition("CreatedAt", sortDirection);
+            return this.App.WorkWith().Data<Task>().Get()
+                .Where(t => t.Owner == ownerId).SetSorting(sort).Skip(skip).Take(take).ExecuteSync();
+        }
+
         #endregion
 
         #region Users
 
+        public IEnumerable<User> GetAllUsers(int skip, int take, bool lastOnTop = true)
+        {
+            var sortDirection = lastOnTop ? OrderByDirection.Descending : OrderByDirection.Ascending;
+            var sort = new SortingDefinition("CreatedAt", sortDirection);
+            return this.App.WorkWith().Users().Get().SetSorting(sort).Skip(skip).Take(take).ExecuteSync();
+        }
+
         public User GetUserById(Guid id)
         {
             return this.App.WorkWith().Users().GetById(id).ExecuteSync();
+        }
+
+        public Guid Create(User item)
+        {
+            var result = this.App.WorkWith().Users().Create(item).ExecuteSync();
+            return result.Id;
+        }
+        
+        public void DeleteUser(Guid id)
+        {
+            this.App.WorkWith().Users().Delete(id);
         }
 
         #endregion
