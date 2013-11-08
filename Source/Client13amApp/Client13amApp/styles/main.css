@@ -27,7 +27,7 @@ body, html {
 #start-scan{
   width:90%;
   left:5%;
-  top:40%;
+  margin-top:40%;
 }
 
 #start-scan span{
@@ -40,6 +40,10 @@ body, html {
   left:15%;
   color:white;
   overflow:hidden;
+}
+
+.view-content{
+  height:100%;
 }
 
 .app-title{
