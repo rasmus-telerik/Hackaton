@@ -8,20 +8,26 @@
     
   TimebackViewModel = kendo.data.ObservableObject.extend({
     task: undefined,
-    time: 'Loading data...',
-    stopBeforeYou: -1
+    startInterval: 'Loading data...',
+    endInterval:'',
+    stopBeforeYou: -1,
+    timeCalculated: false,
+    taskDescription: '',
+    goBack: function () {
+      $('#footer').show();
+      window.location.href = "#tabstrip-scan";
+    }
   });
 
   app.getTimebackForTaskId = function (taskId) {
-
+    $('#footer').hide();
     console.log('getTimebackForTaskId: ' + taskId);
 
     var data = Everlive.$.data('Tasks');
     var query = new Everlive.Query();
     query.where().eq('Id', taskId).done().select("Id", "Route", "Description", "Location", "TimeInMin", "OrderNo");
-
     data.get(query).then(function (results) {
-
+      app.timebackService.viewModel.set('timeCalculated', false);
       if (results.result.length != 1) {
         alert('Task do not exist in database');
         return;
@@ -39,14 +45,14 @@
       var dataRoutes = Everlive.$.data('Routes');
       var queryDriverPosition = new Everlive.Query();
       queryDriverPosition.where().eq('Id', app.timebackService.viewModel.task.Route).done().select("CurrentPosition", "Modified at");
-
+      
       dataRoutes.get(queryDriverPosition).then(function (resultForDriverPostion) {
 
         // make call to get stop before task and time remaning
         var queryForAllTask = new Everlive.Query();
         queryForAllTask.where().eq('Route', app.timebackService.viewModel.task.Route)
           .lte('OrderNo', app.timebackService.viewModel.task.OrderNo)
-          .done().select("Id", "Location", "TimeInMin");
+          .done().select("Id", "Location", "TimeInMin", "Description");
 
         data.get(queryForAllTask).then(function (resultsForAllTasks) {
           // now we have all task for this route
@@ -54,10 +60,10 @@
           app.timebackService.viewModel.stopBeforeYou = length - 1;
 
           var tempLocation = resultForDriverPostion.result[0].CurrentPosition;
-
+          app.timebackService.viewModel.set('taskDescription', resultForDriverPostion.result[0].Description);
           if (tempLocation == undefined)
           {
-            app.timebackService.viewModel.set('time', 'Routen is not active yet.');
+            app.timebackService.viewModel.set('startInterval', 'Routen is not active yet.');
             return;
           }
 
@@ -109,14 +115,14 @@
 
       if (modNum == 0)
       {
-        app.timebackService.viewModel.set('time', '< ' + divideByInMin + ' min');
+        app.timebackService.viewModel.set('startInterval', '< ' + divideByInMin + ' min');
       }
       else if (earliestArrivalInMin > 60)
       {
-        var text = minutesToStr(earliestArrivalInMin) + ' - ' + minutesToStr(latestArrivalInMin);
-        app.timebackService.viewModel.set('time', text);
+        app.timebackService.viewModel.set('startInterval', minutesToStr(earliestArrivalInMin));
+        app.timebackService.viewModel.set('endInterval', minutesToStr(latestArrivalInMin));
       }
-      
+      app.timebackService.viewModel.set('timeCalculated', true);
 
     }
 

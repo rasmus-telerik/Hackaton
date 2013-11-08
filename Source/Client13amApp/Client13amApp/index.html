@@ -22,23 +22,6 @@
   
 </head>
 <body>
-	<!--Home-->
-	<!--<div id="tabstrip-home"
-		data-role="view"
-		data-title="Home">
-
-		<div class="view-content">
-			<h1>Welcome!</h1>
-			<a id="skin-change" data-role="button" data-click="app.changeSkin">Flat</a>
-			<p>
-				Icenium&trade; enables you to build cross-platform device applications regardless of your
-					development platform by combining the convenience of a local development toolset with the
-					power and flexibility of the cloud.
-			</p>
-			<div class="img"></div>
-		</div>
-	</div>-->
-
 	
   <!-- scanner -->
   <div id="tabstrip-scan"
@@ -52,59 +35,24 @@
       <a id="start-scan" data-role="button" data-click="app.onStartScan"><img src="img/qr-scanner.jpg" /></a>
     </div>
  </div>
-
-
-  <!--Login-->
-  <div id="tabstrip-login"
-       data-role="view"
-       data-title="Login"
-       data-model="app.loginService.viewModel">
-
-    <div class="view-content">
-      <div class="logo"></div>
-      <h3 data-bind="invisible: isLoggedIn">Enter your credentials:</h3>
-      <h1 class="welcome" data-bind="visible: isLoggedIn">
-        Welcome, <span data-bind="text: username"></span>!
-      </h1>
-      <div class="buttonArea">
-        <input type="submit" id="logout" data-role="button" data-bind="click: onLogout, visible: isLoggedIn" class="login-button" value="Logout" />
-      </div>
-
-      <form data-bind="events: { keyup: checkEnter }">
-        <ul data-role="listview" data-style="inset" data-bind="invisible: isLoggedIn">
-          <li>
-            <label>
-              Username
-              <input type="text" data-bind="value: username" />
-            </label>
-          </li>
-          <li>
-            <label>
-              Password
-              <input type="password" data-bind="value: password" />
-            </label>
-          </li>
-        </ul>
-
-        <div class="buttonArea">
-          <input type="submit" id="login" data-role="button" data-bind="click: onLogin, invisible: isLoggedIn" class="login-button" value="Login" />
-        </div>
-      </form>
-    </div>
-
-  </div>
-	
+  
 	<!--timeback view-->
   <div id="tabstrip-timeback"
        data-role="view"
        data-model="app.timebackService.viewModel"
        data-show="onTimebackViewShow">
 
-    <div class="view-content">
+    <div class="view-content" data-bind="events:{click:goBack}">
 
-      <div id="timebacktext" data-bind="text:time">~</div>
-      <div id="timebacktext" data-bind="text:endInteval">~</div>
-
+      <div class="eta-time">
+        <div class="eta-time-part" data-bind="text:startInterval"></div>
+        <div class="eta-time-part" data-bind="text:endInterval"></div>
+        <div data-bind="visible: timeCalculated">
+          <div class="eta-time-part">Until</div>
+          <div class="eta-time-part" data-bind="text:taskDescription"></div>
+        </div>
+        
+      </div>     
       <!--<div class="subtext">
         until we are there
       </div>-->
@@ -115,19 +63,10 @@
 	<!--Layout-->
   <div data-role="layout" data-id="tabstrip-layout" id="divtabstrip">
 
-    <!--Header-->
-    <div data-role="header">
-      <div data-role="navbar">
-        <span data-role="view-title"></span>
-      </div>
-    </div>
-
     <!--Footer-->
-    <div data-role="footer">
+    <div id="footer" data-role="footer">
       <div data-role="tabstrip">
-        <a id="menu-scan" href="#tabstrip-scan" data-icon="search">Scan</a>
-        <a id="menu-timeback" href="#tabstrip-timeback" data-icon="globe">Timeback</a>
-        <a id="menu-login" href="#tabstrip-login" data-icon="home">Login</a>
+        <a id="menu-scan" href="#tabstrip-scan" data-icon="search">Scan</a>        
       </div>
     </div>
   </div>
