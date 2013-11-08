@@ -134,6 +134,25 @@ namespace WebApplication.Engine
                 .Where(t => t.Owner == ownerId).SetSorting(sort).Skip(skip).Take(take).ExecuteSync();
         }
 
+        public IList<Task> GetBestTasksCombination(IEnumerable<Task> tasks, int availableMinutes, out int cost, out int benefit)
+        {
+            cost = 0;
+
+            var result = tasks.Take(5).ToList();
+            benefit = this.GetBenefit(result);
+            return result;
+        }
+
+        private int GetBenefit(IEnumerable<Task> tasks)
+        {
+            int result = 0;
+            foreach (var task in tasks)
+            {
+                result += task.TimeInMins;
+            }
+            return result;
+        }
+
         #endregion
 
         #region Users

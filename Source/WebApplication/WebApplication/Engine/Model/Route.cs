@@ -1,5 +1,6 @@
 ﻿using System;
 using Telerik.Everlive.Sdk.Core.Model.Base;
+using Telerik.Everlive.Sdk.Core.Model.System;
 using Telerik.Everlive.Sdk.Core.Serialization;
 
 namespace WebApplication.Engine.Model
@@ -46,6 +47,20 @@ namespace WebApplication.Engine.Model
             {
                 this.driver = value;
                 this.OnPropertyChanged("Driver");
+            }
+        }
+
+        private GeoPoint currentPosition;
+        public GeoPoint CurrentPosition
+        {
+            get
+            {
+                return this.currentPosition;
+            }
+            set
+            {
+                this.currentPosition = value;
+                this.OnPropertyChanged("CurrentPosition");
             }
         }
     }

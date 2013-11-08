@@ -77,5 +77,33 @@ namespace WebApplication.Engine.Model
                 this.OnPropertyChanged("TimeInMins");
             }
         }
+
+        private int orderNo;
+        public int OrderNo
+        {
+            get
+            {
+                return this.orderNo;
+            }
+            set
+            {
+                this.orderNo = value;
+                this.OnPropertyChanged("OrderNo");
+            }
+        }
+
+        private string address;
+        public string Address
+        {
+            get
+            {
+                return this.address;
+            }
+            set
+            {
+                this.address = value;
+                this.OnPropertyChanged("Address");
+            }
+        }
     }
 }
