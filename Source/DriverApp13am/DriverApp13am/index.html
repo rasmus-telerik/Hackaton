@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8" />
+  <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet" />
+  <link href="styles/main.css" rel="stylesheet" />
+
+  <script src="cordova.js"></script>
+  <script src="kendo/js/jquery.min.js"></script>
+  <script src="kendo/js/kendo.mobile.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+
+  <script src="scripts/lib/everlive.all.min.js"></script>
+
+	<script src="scripts/app/login.js"></script>
+  <script src="scripts/app/location.js"></script>
+  <script src="scripts/app/app.js"></script>  
+  <script src="scripts/app/routes.js"></script>  
+  <script src="scripts/app/driving.js"></script>  
+
+</head>
+<body>
+  <div id="tabstrip-routes"
+       data-role="view"
+       data-title="Routes"
+       data-before-show="app.routeService.viewModel.beforeShow"
+       data-model="app.routeService.viewModel">
+
+    <div class="view-content">
+      <div id="routes">
+        <div data-role="listview" data-bind="source:routes" data-selectable="single" data-template="route-template" id="routeList"></div>
+      </div>
+    </div>
+
+    <script type="text/x-kendo-template" id="route-template">
+      <div class="route-element">
+        <h3>#= kendo.toString(StartTime,'d') #</h3>
+        <a data-role="button" data-bind="events:{click:onActivateRoute}">Activate</a>
+      </div>
+    </script>
+  </div>
+
+  <div id="tabstrip-driving"
+       data-role="view"
+       data-title="Driving"
+       data-model="app.drivingService.viewModel">
+
+    <div class="view-content">
+      <div id="tasks">
+         <!--<div>
+           <h3>Current location</h3>
+           <span data-bind="text:latitude"></span>
+           <span>-</span>
+           <span data-bind="text:longitude"></span>
+         </div>-->
+        <div data-role="listview" data-auto-bind="false" data-bind="source:tasks" data-selectable="single" data-template="task-template" id="taskList"></div>        
+      </div>
+      <div class="tasks-bottom">
+        <a data-role="button" data-bind="visible: gpsIsRunning, events:{click:stopGpsCollection}">Stop driving</a>
+      </div>        
+    </div>
+
+    <script type="text/x-kendo-template" id="task-template">
+      <div class="task-element">
+        <div>
+          <img src=""></img>
+          <span>2.3km</span>
+        </div>
+        <div class="task-description">
+          <h3>#=Description#</h3>
+          <span>#=Address#</span>
+        </div>      
+        <div>
+          <a data-role="button" class="task-button" data-bind="events:{click:onNavigateToCustomer}">View  </a>
+        </div>  
+      </div>
+    </script>
+  </div>
+
+  <div data-role="view"
+       data-model="app.loginService.viewModel"
+       id="view-login">
+    <div class="logo"></div>
+    <h3>Enter your credentials:</h3>        
+    <form data-bind="events: { keyup: checkEnter }">
+      <ul data-role="listview" data-style="inset">
+        <li>
+          <label>
+            Username
+            <input type="text" data-bind="value: username" />
+          </label>
+        </li>
+        <li>
+          <label>
+            Password
+            <input type="password" data-bind="value: password" />
+          </label>
+        </li>
+      </ul>
+
+      <div class="buttonArea">
+        <input type="submit" id="login" data-role="button" data-bind="click: onLogin" class="login-button" value="Login" />
+      </div>
+    </form>
+  </div>
+
+	<!--Layout-->
+	<div data-role="layout" data-id="tabstrip-layout">
+		<!--Header-->
+		<div data-role="header">
+			<div data-role="navbar">
+				<span data-role="view-title"></span>        
+			</div>
+		</div>
+
+		<!--Footer-->
+		<div id="footer" data-role="footer">
+			<div data-role="tabstrip">
+				<a href="#tabstrip-routes" data-icon="globe">Routes</a>
+        <a href="#tabstrip-driving" data-icon="play">Driving</a>				
+			</div>
+		</div>
+	</div>
+  <script>
+    $('#footer').hide();
+  </script>
+</body>
+</html>
