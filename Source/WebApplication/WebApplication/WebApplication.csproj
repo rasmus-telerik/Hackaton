@@ -206,7 +206,9 @@
     <Content Include="Content\Images\13am logo.png" />
     <Content Include="Content\Images\Cloud.png" />
     <Content Include="Content\Images\Map.jpg" />
+    <Content Include="Content\Images\People.png" />
     <Content Include="Content\Images\Phone.png" />
+    <Content Include="Content\Images\PhoneH.png" />
     <Content Include="Content\Images\Route.png" />
     <Content Include="Content\kendo.common.css" />
     <Content Include="Content\kendo.default.css" />
