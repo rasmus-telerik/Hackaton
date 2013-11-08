@@ -23,3 +23,13 @@
 		app.application.skin(mobileSkin);
 	};
 })(window);
+
+
+function onTimebackViewShow() {
+  console.log('onTimebackViewShow');
+  $('#menu-timeback').show();
+  $('#menu-login').hide();
+
+  //$('#divtabstrip').hide();
+  //$('#divtabstrip').show();
+}

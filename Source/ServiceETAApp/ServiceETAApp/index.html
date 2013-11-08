@@ -39,91 +39,101 @@
 		</div>
 	</div>-->
 
-	<!--Login-->
-	<!--<div id="tabstrip-login"
-		data-role="view"
-		data-title="Login"
-		data-model="app.loginService.viewModel">
-
-		<div class="view-content">
-			<div class="logo"></div>
-			<h3 data-bind="invisible: isLoggedIn">Enter your credentials:</h3>
-			<h1 class="welcome" data-bind="visible: isLoggedIn">Welcome, <span data-bind="text: username"></span>!
-			</h1>
-			<div class="buttonArea">
-				<input type="submit" id="logout" data-role="button" data-bind="click: onLogout, visible: isLoggedIn" class="login-button" value="Logout" />
-			</div>
-
-			<form data-bind="events: { keyup: checkEnter }">
-				<ul data-role="listview" data-style="inset" data-bind="invisible: isLoggedIn">
-					<li>
-						<label>
-							Username
-								<input type="text" data-bind="value: username" />
-						</label>
-					</li>
-					<li>
-						<label>
-							Password
-								<input type="password" data-bind="value: password" />
-						</label>
-					</li>
-				</ul>
-
-				<div class="buttonArea">
-					<input type="submit" id="login" data-role="button" data-bind="click: onLogin, invisible: isLoggedIn" class="login-button" value="Login" />
-				</div>
-			</form>
-		</div>
-
-	</div>-->
-
+	
+  <!-- scanner -->
   <div id="tabstrip-scan"
        data-role="view"
        data-title="Scan you QR code"
-       data-model="app.scanService.viewModel"   >
+       data-model="app.scanService.viewModel">
 
     <div class="view-content">
       <h3>Scan you service code:</h3>
       
-      <a id="start-scan" data-click="app.onStartScan"><img src="img/qr-scanner.jpg" /></a>
-      </div>
+      <a id="start-scan" data-role="button" data-click="app.onStartScan"><img src="img/qr-scanner.jpg" /></a>
+    </div>
  </div>
 
+
+  <!--Login-->
+  <div id="tabstrip-login"
+       data-role="view"
+       data-title="Login"
+       data-model="app.loginService.viewModel">
+
+    <div class="view-content">
+      <div class="logo"></div>
+      <h3 data-bind="invisible: isLoggedIn">Enter your credentials:</h3>
+      <h1 class="welcome" data-bind="visible: isLoggedIn">
+        Welcome, <span data-bind="text: username"></span>!
+      </h1>
+      <div class="buttonArea">
+        <input type="submit" id="logout" data-role="button" data-bind="click: onLogout, visible: isLoggedIn" class="login-button" value="Logout" />
+      </div>
+
+      <form data-bind="events: { keyup: checkEnter }">
+        <ul data-role="listview" data-style="inset" data-bind="invisible: isLoggedIn">
+          <li>
+            <label>
+              Username
+              <input type="text" data-bind="value: username" />
+            </label>
+          </li>
+          <li>
+            <label>
+              Password
+              <input type="password" data-bind="value: password" />
+            </label>
+          </li>
+        </ul>
+
+        <div class="buttonArea">
+          <input type="submit" id="login" data-role="button" data-bind="click: onLogin, invisible: isLoggedIn" class="login-button" value="Login" />
+        </div>
+      </form>
+    </div>
+
+  </div>
 	
 	<!--timeback view-->
-	<div id="tabstrip-timeback"
-		data-role="view"
-		data-model="app.timebackService.viewModel">
+  <div id="tabstrip-timeback"
+       data-role="view"
+       data-model="app.timebackService.viewModel"
+       data-show="onTimebackViewShow">
 
     <div class="view-content">
 
-      <div id="timebacktext">~ min</div>
+      <div id="timebacktext" data-bind="text:time">~</div>
+      <div id="timebacktext" data-bind="text:endInteval">~</div>
 
-      <div class="subtext">
+      <!--<div class="subtext">
         until we are there
-      </div>
+      </div>-->
 
     </div>
-	</div>
+  </div>
 
 	<!--Layout-->
-	<div data-role="layout" data-id="tabstrip-layout">
+  <div data-role="layout" data-id="tabstrip-layout" id="divtabstrip">
 
-		<!--Header-->
-		<div data-role="header">
-			<div data-role="navbar">
-				<span data-role="view-title"></span>
-			</div>
-		</div>
+    <!--Header-->
+    <div data-role="header">
+      <div data-role="navbar">
+        <span data-role="view-title"></span>
+      </div>
+    </div>
 
-		<!--Footer-->
-		<div data-role="footer">
-			<div data-role="tabstrip">
-				<a href="#tabstrip-scan" data-icon="search">Scan</a>
-        <a href="#tabstrip-timeback" data-icon="globe">Timeback</a>
-			</div>
-		</div>
-	</div>
+    <!--Footer-->
+    <div data-role="footer">
+      <div data-role="tabstrip">
+        <a id="menu-scan" href="#tabstrip-scan" data-icon="search">Scan</a>
+        <a id="menu-timeback" href="#tabstrip-timeback" data-icon="globe">Timeback</a>
+        <a id="menu-login" href="#tabstrip-login" data-icon="home">Login</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $('#menu-timeback').hide();
+  </script>
 </body>
 </html>
