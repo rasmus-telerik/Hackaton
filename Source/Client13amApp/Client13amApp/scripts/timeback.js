@@ -37,7 +37,7 @@
 
       // Set current result
       app.timebackService.viewModel.task = results.result[0];
-
+      app.timebackService.viewModel.set('taskDescription', app.timebackService.viewModel.task.Description);
       calculateTotalTimeFromPreviouslyTask();
 
     });
@@ -62,7 +62,6 @@
           app.timebackService.viewModel.stopBeforeYou = length - 1;
 
           var tempLocation = resultForDriverPostion.result[0].CurrentPosition;
-          app.timebackService.viewModel.set('taskDescription', resultForDriverPostion.result[0].Description);
           if (tempLocation == undefined)
           {
             app.timebackService.viewModel.set('startInterval', 'Routen is not active yet.');
