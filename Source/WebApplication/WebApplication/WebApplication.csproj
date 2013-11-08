@@ -203,6 +203,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\13am logo.png" />
+    <Content Include="Content\Images\Cloud.png" />
+    <Content Include="Content\Images\Map.jpg" />
+    <Content Include="Content\Images\Phone.png" />
+    <Content Include="Content\Images\Route.png" />
     <Content Include="Content\Legacy.css" />
     <Content Include="Content\OnePageScroll\Home.css" />
     <Content Include="Content\OnePageScroll\onepage-scroll.css" />
@@ -262,6 +267,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Content\Fonts\HVU.ttf" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />

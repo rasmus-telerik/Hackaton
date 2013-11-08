@@ -1,4 +1,9 @@
-﻿html {
+﻿@font-face {
+    font-family: HelveticaNU;
+    src: url('Fonts/HVU.ttf');
+}
+
+html {
     background-color: #e2e2e2;
     margin: 0;
     padding: 0;
@@ -20,12 +25,28 @@ body {
     background-color: #efeeef;
     clear: both;
     padding-bottom: 35px;
-    top: 100px;
+    top: 80px;
     position: relative;
 }
 
 .clear {
     clear: both;
+}
+
+.blue-button {
+    display: block;
+    font-family: HelveticaNU;
+    font-weight: 400;
+    font-size: 19px;
+    color: white;
+    background-color: #2d88e3;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.blue-button:hover {
+    color: white;
+    background-color: #1568ad;
 }
 
 /* login
@@ -39,7 +60,7 @@ body {
 
     #login nav {
         float: left;
-        padding-right: 150px;
+        padding-right: 50px;
     }
 
         #login nav::after {
@@ -53,9 +74,9 @@ body {
 
     #login a {
         background-color: #d3dce0;
-        margin-left: 10px;
+        margin-left: 5px;
         margin-right: 3px;
-        padding: 2px 3px;
+        padding: 2px 0px;
         text-decoration: none;
     }
 
@@ -63,7 +84,6 @@ body {
             background: none;
             margin: 0;
             padding: 0;
-            text-decoration: underline;
         }
 
     #login ul {

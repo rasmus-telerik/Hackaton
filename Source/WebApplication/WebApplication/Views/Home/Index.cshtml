@@ -11,30 +11,41 @@
         </h1>
     </section>
     <section class="one-page-section page-2">
-        <img />
-        <h2>Fashionably late is so last season</h2>
-        <p>We beleive in efficiency and will plot your route in a way that will
-            surprise even the most experienced of drivers. We will even take into consideration the idle time.
-        </p>
+        <div>
+            <img src="~/Content/Images/Route.png" />
+            <h2>Fashionably late is so last season</h2>
+            <p>We beleive in efficiency and will plot your route in a way that</p>
+            <p>will surprise even the most experienced of drivers.</p>
+            <p>We will even take into consideration the idle time.</p>
+        </div>
     </section>
     <section class="one-page-section page-3">
-        <img />
-        <h2>Cloudy is not a bad thing</h2>
-        <p>Powered by the cloud, 13am will keep you always up to date with the progress of your visit.</p>
+        <div>
+            <img src="~/Content/Images/Cloud.png" />
+            <h2>Cloudy is not a bad thing</h2>
+            <p>Powered by the cloud, 13am will keep you always up to date</p>
+            <p>with the progress of your visit.</p>
+        </div>
     </section>
     <section class="one-page-section page-4">
-        <h2>Endless waiting no more</h2>
-        <p>We value time. We let your customers always know when you are about to arrive. We will even remind them of your visit.</p>
-        <button></button>
-        <img />
+        <div>
+            <h2>Endless waiting no more</h2>
+            <p>We value time. We let your</p>
+            <p>customers always know when you</p>
+            <p>are about to arrive. We will even</p>
+            <p>remind them of your visit.</p>
+            <a class="blue-button">Try it now for free</a>
+        </div>
+        <img src="~/Content/Images/Phone.png" />
+        <br class="clear" />
     </section>
 </div>
 
 @section scripts{
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $(".main-pages").onepage_scroll({
-                sectionContainer: ".one-page-section", 
+                sectionContainer: ".one-page-section",
                 easing: "ease",
                 animationTime: 1000,
                 pagination: true,
