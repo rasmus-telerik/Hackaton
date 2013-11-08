@@ -14,7 +14,7 @@
       this.activeRoute = route;
       var data = Everlive.$.data('Tasks');
       var query = new Everlive.Query();
-      query.where().eq('Route', route.Id).done().select("Id", "Description", "Location", "TimeInMin", "OrderNo").order("OrderNo");
+      query.where().eq('Route', route.Id).done().select("Id", "Description", "Address", "Location", "TimeInMin", "OrderNo").order("OrderNo");
 
       data.get(query).then(function (data) {
         app.drivingService.viewModel.tasks = data.result;
@@ -40,8 +40,8 @@
         that.set("longitude", position.coords.longitude);
 
         //Update route with the current location
-        //book['Notes'] = 'A very interesting book.';
-        //Everlive.$.data('Routes').updateSingle(book);
+        that.activeRoute.CurrentPosition = new Everlive.GeoPoint( position.coords.longitude, position.coords.latitude);
+        Everlive.$.data('Routes').updateSingle(that.activeRoute);
 
         //that.latitude = position.coords.latitude;
         //that.longitude = position.coords.longitude;

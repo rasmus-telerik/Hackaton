@@ -10,7 +10,7 @@
       var data = Everlive.$.data('Routes');
       var query = new Everlive.Query();
       //query.where().eq('Driver', app.el.User.Id).Done().select("StartTime");
-      query.select("Id","StartTime");
+      query.select("Id","StartTime", "CurrentPosition");
       data.get(query).then(function (data) {
         app.routeService.viewModel.routes = data.result;
         app.routeService.viewModel.trigger("change", { field: "routes" });
