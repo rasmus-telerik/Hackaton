@@ -3,16 +3,18 @@
 	pp = global.app = global.app || {};
 
   DrivingViewModel = kendo.data.ObservableObject.extend({
-    gpsIsRunning:false,
+    activeRoute:undefined,
+    gpsIsRunning: false,
     latitude:0,
     longitude: 0,
     gpsTimer:undefined,
     tasks: [],
 
-    getTasksForDriver: function (id) {
+    getTasksForRoute: function (route) {
+      this.activeRoute = route;
       var data = Everlive.$.data('Tasks');
       var query = new Everlive.Query();
-      query.where().eq('Route', id).done().select("Id", "Description", "Location", "TimeInMin", "OrderNo").order("OrderNo");
+      query.where().eq('Route', route.Id).done().select("Id", "Description", "Location", "TimeInMin", "OrderNo").order("OrderNo");
 
       data.get(query).then(function (data) {
         app.drivingService.viewModel.tasks = data.result;
@@ -29,12 +31,18 @@
       }, 60 * 1000);
 
     },
+
     collectLocation: function () {
       var that = this;
       navigator.geolocation.getCurrentPosition(
       function (position) {
         that.set("latitude", position.coords.latitude);
         that.set("longitude", position.coords.longitude);
+
+        //Update route with the current location
+        //book['Notes'] = 'A very interesting book.';
+        //Everlive.$.data('Routes').updateSingle(book);
+
         //that.latitude = position.coords.latitude;
         //that.longitude = position.coords.longitude;
 
