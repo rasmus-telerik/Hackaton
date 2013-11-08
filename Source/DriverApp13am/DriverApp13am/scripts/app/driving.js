@@ -14,7 +14,7 @@
       this.activeRoute = route;
       var data = Everlive.$.data('Tasks');
       var query = new Everlive.Query();
-      query.where().eq('Route', route.Id).done().select("Id", "Description", "Address", "Location", "TimeInMin", "OrderNo").order("OrderNo");
+      query.where().eq('Route', route.Id).ne('Done', true).done().select("Id", "Description", "Address", "Location", "TimeInMin", "OrderNo").order("OrderNo");
       var that = this;
       data.get(query).then(function (data) {
 
@@ -62,7 +62,7 @@
       that.collectLocation();
       this.gpsTimer = setInterval(function () {
         that.collectLocation();
-      }, 600 * 1000);
+      }, 60 * 1000);
 
     },
 
@@ -102,7 +102,22 @@
     onNavigateToCustomer: function (id) {
       var geopoint = id.data.Location;
       window.location.href = "https://maps.google.dk/maps?q=" + geopoint.latitude + "%2C" + +geopoint.longitude;
+    },
+    onTaskDone: function (id) {
+      var that = this;
+      var item = {
+        Id: id.data.Id,
+        Done: true
+      };
+
+      //Update route with the current location
+      Everlive.$.data('Tasks').updateSingle(item, function (data) {
+        //Refresh drivers data
+        that.getTasksForRoute(that.activeRoute);
+      });
+      
     }
+
   });
 
   app.drivingService = {
