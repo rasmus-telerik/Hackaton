@@ -35,7 +35,8 @@ body, html {
 }
 
 .task-button-div {
-  text-align: right;
+  float:right;
+  margin-top:45px;
 }
 
 
@@ -52,6 +53,7 @@ body, html {
   width:90%;
   margin-left: auto;
   margin-right: auto;
+  vertical-align: central;
 }
 
 .tasks-bottom a{
