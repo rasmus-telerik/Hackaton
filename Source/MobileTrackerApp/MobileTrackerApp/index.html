@@ -55,9 +55,11 @@
            <span>-</span>
            <span data-bind="text:longitude"></span>
          </div>-->
-        <div data-role="listview" data-auto-bind="false" data-bind="source:tasks" data-selectable="single" data-template="task-template" id="taskList"></div>
-        <a data-role="button" data-bind="visible: gpsIsRunning, events:{click:stopGpsCollection}">Stop driving</a>
+        <div data-role="listview" data-auto-bind="false" data-bind="source:tasks" data-selectable="single" data-template="task-template" id="taskList"></div>        
       </div>
+      <div class="tasks-bottom">
+        <a data-role="button" data-bind="visible: gpsIsRunning, events:{click:stopGpsCollection}">Stop driving</a>
+      </div>        
     </div>
 
     <script type="text/x-kendo-template" id="task-template">

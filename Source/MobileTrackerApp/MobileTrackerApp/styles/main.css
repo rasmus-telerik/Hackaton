@@ -43,13 +43,27 @@ body, html {
   margin-bottom:0px;
 }
 
-task-element:first-child{
+.tasks-bottom{
+  width:90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tasks-bottom a{
+  width:100%;
+}
+
+.tasks-bottom a span{
+  margin-left:35%;
+}
+
+/*.task-element:first-child{
   width:15%;
 }
 
-task-element:last-child{
+.task-element:last-child{
   width:15%;
-}
+}*/
 
 .task-element h3{
   display:inline-block;
