@@ -15,11 +15,45 @@
       var data = Everlive.$.data('Tasks');
       var query = new Everlive.Query();
       query.where().eq('Route', route.Id).done().select("Id", "Description", "Address", "Location", "TimeInMin", "OrderNo").order("OrderNo");
-
+      var that = this;
       data.get(query).then(function (data) {
+
+        for (var i = 0; i < data.result.length; i++) {
+          data.result[i].Disttotask = '~';
+        }
+
+        // Calculate the distance from point to point
+        if (route !== undefined) {
+          var tempLocation = route.CurrentPosition;
+          if (tempLocation !== undefined) {
+            for (var i = 0; i < data.result.length; i++) {
+              var taks = data.result[i];
+              var distInKm = that.getDistanceFromLatLonInKm(tempLocation.latitude, tempLocation.longitude, taks.Location.latitude, taks.Location.longitude);
+              data.result[i].Disttotask = Math.round(distInKm * 10) / 10;
+              tempLocation = taks.Location;
+            }
+          }
+        }
+
         app.drivingService.viewModel.tasks = data.result;
         app.drivingService.viewModel.trigger("change", { field: "tasks" });
       });
+    },
+
+    getDistanceFromLatLonInKm: function (lat1, lon1, lat2, lon2) {
+      var R = 6371; // Radius of the earth in km const
+      var dLat = this.deg2rad(lat2 - lat1);  // deg2rad below
+      var dLon = this.deg2rad(lon2 - lon1);
+      var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      var d = R * c; // Distance in km
+      return d;
+    },
+
+    deg2rad: function (deg) {
+      return deg * (Math.PI / 180)
     },
 
     startGpsCollection: function () {
@@ -28,7 +62,7 @@
       that.collectLocation();
       this.gpsTimer = setInterval(function () {
         that.collectLocation();
-      }, 60 * 1000);
+      }, 1 * 1000);
 
     },
 
@@ -38,6 +72,8 @@
       function (position) {
         that.set("latitude", position.coords.latitude);
         that.set("longitude", position.coords.longitude);
+
+        that.getTasksForRoute(that.activeRoute);
 
         //Update route with the current location
         that.activeRoute.CurrentPosition = new Everlive.GeoPoint( position.coords.longitude, position.coords.latitude);

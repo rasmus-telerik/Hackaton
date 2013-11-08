@@ -30,9 +30,14 @@ body, html {
 }
 
 .task-description{
-  width:60%;
+  width:50%;
   margin-left:5px;
 }
+
+.task-button-div {
+  text-align: right;
+}
+
 
 .task-description>*{
   display:block;
