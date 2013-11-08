@@ -24,6 +24,11 @@ body, html {
 	font-size: 1em;
 }
 
+.timebacktext {
+  color: #358CFF;
+	font-size: 3.0em;
+} 
+
 /* IMAGE STYLES*/
 .img {
 	background-image: url(../styles/images/icenium.png);
@@ -170,46 +175,6 @@ body, html {
 
 .weather-info.temperature.low {
 	color: rgba(0,0,0,0.5);
-}
-
-/* Weather Icons*/
-.weather-icon {
-	width: 64px;
-	height: 64px;
-	background-image: url(../styles/images/sprite-weather.png);
-	background-repeat: no-repeat;
-	float: right;
-	position: relative;
-	top: -6px;
-	left: -10px;
-}
-
-.weather-icon.sunny {
-	background-position: 0px 0px;
-}
-
-.weather-icon.cloudy {
-	background-position: 0px -64px;
-}
-
-.weather-icon.partly-cloudy {
-	background-position: 0px -128px;
-}
-
-.weather-icon.partly-sunny {
-	background-position: 0px -192px;
-}
-
-.weather-icon.shower {
-	background-position: 0px -256px;
-}
-
-.weather-icon.foggy {
-	background-position: 0px -320px;
-}
-
-.weather-icon.storm {
-	background-position: 0px -384px;
 }
 
 .position-left {
