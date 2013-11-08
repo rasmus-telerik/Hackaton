@@ -24,12 +24,38 @@ body, html {
 	font-size: 1em;
 }
 
+#start-scan{
+  width:90%;
+  left:5%;
+  top:40%;
+}
+
+#start-scan span{
+  margin-left:30%;
+}
+
 .eta-time{
   position:absolute;
   top:40%;
   left:15%;
   color:white;
   overflow:hidden;
+}
+
+.app-title{
+  margin-top:5%;
+  color:gray;
+  font-family:'HelveticaNeue-UltraLight', 'Helvetica Neue UltraLight';
+  line-height:25px;
+}
+
+.app-title span:first-child{
+  font-size:1.9em;
+}
+
+.app-title span:last-child{
+  font-size:1.2em;
+  vertical-align:top;
 }
 
 .eta-time-part{

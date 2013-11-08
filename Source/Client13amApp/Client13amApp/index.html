@@ -30,9 +30,11 @@
        data-model="app.scanService.viewModel">
 
     <div class="view-content">
-      <h3>Scan you service code:</h3>
-      
-      <a id="start-scan" data-role="button" data-click="app.onStartScan"><img src="img/qr-scanner.jpg" /></a>
+      <div class="app-title">
+        <span>13</span>
+        <span>am</span>
+      </div>
+      <a id="start-scan" data-role="button" data-click="app.onStartScan">Scan your code!</a>
     </div>
  </div>
   
@@ -62,7 +64,6 @@
 
 	<!--Layout-->
   <div data-role="layout" data-id="tabstrip-layout" id="divtabstrip">
-
     <!--Footer-->
     <div id="footer" data-role="footer">
       <div data-role="tabstrip">

@@ -74,10 +74,8 @@
     <Content Include="scripts\app\driving.js" />
     <Content Include="scripts\app\routes.js" />
     <Content Include="scripts\lib\everlive.all.min.js" />
-    <Content Include="styles\images\icenium.png" />
-    <Content Include="styles\images\icenium2x.png" />
     <Content Include="styles\images\logo.png" />
-    <Content Include="styles\images\logo2x.png" />
+    <Content Include="styles\images\logo_ipad.png" />
     <Content Include="styles\images\search.png" />
     <Content Include="styles\images\search2x.png" />
     <Content Include="styles\images\search_active.png" />

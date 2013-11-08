@@ -15,12 +15,14 @@
     taskDescription: '',
     goBack: function () {
       $('#footer').show();
+      $('#header').show();
       window.location.href = "#tabstrip-scan";
     }
   });
 
   app.getTimebackForTaskId = function (taskId) {
     $('#footer').hide();
+    $('#header').hide();
     console.log('getTimebackForTaskId: ' + taskId);
 
     var data = Everlive.$.data('Tasks');
