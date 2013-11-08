@@ -8,11 +8,10 @@ namespace WebApplication.Controllers
     {
         public ActionResult All()
         {
-            // get the everlive user by using the id of the user
             return View();
         }
 
-        public ActionResult View()
+        public ActionResult ViewRoute()
         {
             return View();
         }

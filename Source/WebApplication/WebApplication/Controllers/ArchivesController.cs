@@ -6,14 +6,9 @@ using System.Web.Mvc;
 
 namespace WebApplication.Controllers
 {
-    public class WorkerksController : BaseDispatchController
+    public class ArchivesController : Controller
     {
         public ActionResult All()
-        {
-            return View();
-        }
-
-        public ActionResult AssignRoute()
         {
             return View();
         }
