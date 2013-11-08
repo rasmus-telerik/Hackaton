@@ -49,6 +49,19 @@ body {
     background-color: #1568ad;
 }
 
+.menu-items {
+    font-family: HelveticaNU;
+    font-weight: 500;
+    font-size: 16px;
+    color: #353535;
+    text-decoration: none;
+    background-color: none;
+}
+
+.menu-items:hover {
+    color: black;
+}
+
 /* login
 ----------------------------------------------------------*/
 #login {
@@ -60,7 +73,7 @@ body {
 
     #login nav {
         float: left;
-        padding-right: 50px;
+        padding-right: 30px;
     }
 
         #login nav::after {
@@ -70,20 +83,6 @@ body {
             content: " ";
             clear: both;
             height: 0;
-        }
-
-    #login a {
-        background-color: #d3dce0;
-        margin-left: 5px;
-        margin-right: 3px;
-        padding: 2px 0px;
-        text-decoration: none;
-    }
-
-        #login a.username {
-            background: none;
-            margin: 0;
-            padding: 0;
         }
 
     #login ul {
@@ -111,7 +110,7 @@ ul#menu {
         padding-left: 15px;
     }
 
-        ul#menu li a {
+        /*ul#menu li a {
             background: none;
             color: #999;
             text-decoration: none;
@@ -120,4 +119,4 @@ ul#menu {
             ul#menu li a:hover {
                 color: #333;
                 text-decoration: none;
-            }
+            }*/

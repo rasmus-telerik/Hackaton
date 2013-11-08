@@ -2,18 +2,18 @@
 {
     <nav>
         <ul id="menu">
-            <li>@Html.ActionLink("Locations", "All", "Locations")</li>
-            <li>@Html.ActionLink("RouteDispatch", "All", "Routes")</li>
-            <li>@Html.ActionLink("Workers", "All", "Employess")</li>
-            <li>@Html.ActionLink("Archives", "All", "Archives")</li>
+            <li>@Html.ActionLink("Locations", "All", "Locations", new { @class = "menu-items" })</li>
+            <li>@Html.ActionLink("Routes", "All", "RouteDispatch", new { @class = "menu-items" })</li>
+            <li>@Html.ActionLink("Employess", "All", "Workers", new { @class = "menu-items" })</li>
+            <li>@Html.ActionLink("Archives", "All", "Archives", new { @class = "menu-items" })</li>
         </ul>
     </nav>
     <text>
-    @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })
+    @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "menu-items", title = "Manage" })
         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
         {
             @Html.AntiForgeryToken()
-            <a href="javascript:document.getElementById('logoutForm').submit()">Sign out</a>
+            <a class="menu-items" href="javascript:document.getElementById('logoutForm').submit()">Sign out</a>
         }
     </text>
 }
