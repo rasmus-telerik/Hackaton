@@ -24,12 +24,15 @@
     $('#footer').hide();
     $('#header').hide();
     console.log('getTimebackForTaskId: ' + taskId);
+    app.timebackService.viewModel.set('timeCalculated', false);
+    app.timebackService.viewModel.set('startInterval', 'Loading data...');
+    app.timebackService.viewModel.set('endInterval', '');
 
     var data = Everlive.$.data('Tasks');
     var query = new Everlive.Query();
-    query.where().eq('Id', taskId).done().select("Id", "Route", "Description", "Location", "TimeInMin", "OrderNo");
+    query.where().eq('Id', taskId).done().select("Id", "Route", "Description", "Location", "TimeInMin", "OrderNo", "Done");
     data.get(query).then(function (results) {
-      app.timebackService.viewModel.set('timeCalculated', false);
+      
       if (results.result.length != 1) {
         alert('Task do not exist in database');
         return;
@@ -38,8 +41,11 @@
       // Set current result
       app.timebackService.viewModel.task = results.result[0];
       app.timebackService.viewModel.set('taskDescription', app.timebackService.viewModel.task.Description);
-      calculateTotalTimeFromPreviouslyTask();
 
+      if (app.timebackService.viewModel.task.Done != true)
+        calculateTotalTimeFromPreviouslyTask();
+      else
+        app.timebackService.viewModel.set('startInterval', 'We have been with you... use facebook to make friends. Have a nice day');
     });
 
     function calculateTotalTimeFromPreviouslyTask() {
@@ -53,6 +59,7 @@
         // make call to get stop before task and time remaning
         var queryForAllTask = new Everlive.Query();
         queryForAllTask.where().eq('Route', app.timebackService.viewModel.task.Route)
+          .ne('Done', true)
           .lte('OrderNo', app.timebackService.viewModel.task.OrderNo)
           .done().select("Id", "Location", "TimeInMin", "Description");
 
