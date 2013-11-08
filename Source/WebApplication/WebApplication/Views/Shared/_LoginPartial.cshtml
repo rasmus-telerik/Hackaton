@@ -20,7 +20,7 @@
 else
 {
     <ul>
-        <li>@Html.ActionLink("Sign in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-        <li>@Html.ActionLink("Try now", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Try now", "Register", "Account", routeValues: null, htmlAttributes: new { @class="blue-button" })</li>
+        <li>@Html.ActionLink("Sign in", "Login", "Account", routeValues: null, htmlAttributes: new { @class="menu-items" })</li>
     </ul>
 }

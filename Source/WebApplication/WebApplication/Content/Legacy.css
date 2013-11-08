@@ -6,11 +6,6 @@
     text-decoration: underline;
 }
 
-    a:link, a:visited,
-    a:active, a:hover {
-        color: #333;
-    }
-
 header, footer, hgroup,
 nav, section {
     display: block;
