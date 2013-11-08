@@ -74,6 +74,7 @@
     <Content Include="scripts\app\driving.js" />
     <Content Include="scripts\app\routes.js" />
     <Content Include="scripts\lib\everlive.all.min.js" />
+    <Content Include="styles\images\location_blue.png" />
     <Content Include="styles\images\logo.png" />
     <Content Include="styles\images\logo_ipad.png" />
     <Content Include="styles\images\search.png" />

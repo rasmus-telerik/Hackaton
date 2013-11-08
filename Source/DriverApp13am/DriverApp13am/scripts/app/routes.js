@@ -27,7 +27,7 @@
     onActivateRoute: function (e) {
       global.app.drivingService.viewModel.getTasksForRoute(e.data);
       global.app.drivingService.viewModel.startGpsCollection();
-      window.location.href = "#tabstrip-driving";
+      window.location.href = "#tabstrip-directions";
     }
   });
 

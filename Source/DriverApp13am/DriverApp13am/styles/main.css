@@ -29,6 +29,7 @@ body, html {
   padding:0px;
 }
 
+
 .task-description{
   width:50%;
   margin-left:5px;
@@ -39,6 +40,14 @@ body, html {
   margin-top:45px;
 }
 
+.task-distance{
+  margin-left:2px;
+  margin-top:2px;
+}
+
+.task-distance>*{
+  display:block;
+}
 
 .task-description>*{
   display:block;
@@ -227,7 +236,7 @@ body, html {
 	}
 
 	.logo {
-		background-image: url(../styles/images/logo2x.png);
+		background-image: url(../styles/images/logo2_ipad.png);
 		background-repeat: no-repeat;
 		background-size: 100%;
 	}

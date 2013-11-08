@@ -62,7 +62,7 @@
       that.collectLocation();
       this.gpsTimer = setInterval(function () {
         that.collectLocation();
-      }, 1 * 1000);
+      }, 600 * 1000);
 
     },
 
