@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}") = "Service13amApp", "ServiceETAApp\Service13amApp.iceproj", "{55298CED-3C3B-4D12-A5FD-DFA9BB643C3B}"
+Project("{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}") = "Client13amApp", "Client13amApp\Client13amApp.iceproj", "{55298CED-3C3B-4D12-A5FD-DFA9BB643C3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
