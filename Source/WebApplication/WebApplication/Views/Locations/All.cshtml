@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication.Engine.Model.Task>
+﻿@model IEnumerable<WebApplication.Models.LocationModel>
 
 @{
     ViewBag.Title = "All";
@@ -25,26 +25,27 @@
 }
 
 <div id="addLocationWindow" style="display: none;">
-    <form>
-        <label for="customer">CUSTOMER</label>
-        <input id="customer" type="text" style="width: 90%" />
-        <label for="visit">VISIT</label>
-        <textarea id="visit" rows="3" style="width: 90%">
-        </textarea>
-        <label for="address">ADDRESS</label>
-        <textarea id="address" rows="3" style="width: 90%">
-        </textarea>
+    @using (Html.BeginForm("Add", "Locations"))
+    {
+        <label for="customer">CUSTOMER:</label>
+        <input id="customer" type="text" style="width: 90%" name="Customer" />
+        <label for="visit">VISIT:</label>
+        <textarea id="visit" rows="3" style="width: 90%" name="Description" ></textarea>
+        <label for="address">ADDRESS:</label>
+        <textarea id="address" rows="3" style="width: 90%" name="Address"></textarea>
+        <label for="customer">VISIT TIME:</label>
+        <input id="visitTime" type="text" style="width: 90%" name="VisitTime" />
         <input type="submit" value="Add location">
-        <button onclick="addLocationKendoWindow.close();">Cancel</button>
-    </form>
+        <button onclick="addLocationKendoWindow.close();return false;">Cancel</button>
+    }
 </div>
 
 <div class="page-header">
     <h1>Locations</h1>
-    <a href="">Plan routes</a>
 </div>
 
-<a id="addLocationLink"><img src="" /> Add location</a>
+<button id="addLocationLink">Add location</button>
+<button>Plan routes</button>
 
 <table>
     <tr>
@@ -59,9 +60,9 @@
         <tbody>
             <tr>
                 <td>@task.Description</td>
-                <td>@task.Location.Latitude &nbsp; @task.Location.Longitude</td>
+                <td>@task.Address</td>
                 <td>@task.Customer</td>
-                <td>@task.TimeInMins minutes</td>
+                <td>@task.VisitTime minutes</td>
             </tr>
         </tbody>
         }
