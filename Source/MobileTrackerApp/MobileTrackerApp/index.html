@@ -44,17 +44,17 @@
 
   <div id="tabstrip-driving"
        data-role="view"
-       data-title="Login"
+       data-title="Driving"
        data-model="app.drivingService.viewModel">
 
     <div class="view-content">
       <div id="tasks">
-         <div>
+         <!--<div>
            <h3>Current location</h3>
            <span data-bind="text:latitude"></span>
            <span>-</span>
            <span data-bind="text:longitude"></span>
-         </div>
+         </div>-->
         <div data-role="listview" data-auto-bind="false" data-bind="source:tasks" data-selectable="single" data-template="task-template" id="taskList"></div>
         <a data-role="button" data-bind="visible: gpsIsRunning, events:{click:stopGpsCollection}">Stop driving</a>
       </div>
@@ -62,8 +62,17 @@
 
     <script type="text/x-kendo-template" id="task-template">
       <div class="task-element">
-        <h3>#= Description #</h3>
-        <a data-role="button" data-bind="events:{click:onNavigateToCustomer}">Navigate</a>
+        <div>
+          <img src=""></img>
+          <span>2.3km</span>
+        </div>
+        <div class="task-description">
+          <h3>#=Description#</h3>
+          <span>#=Address#</span>
+        </div>      
+        <div>
+          <a data-role="button" class="task-button" data-bind="events:{click:onNavigateToCustomer}">View  </a>
+        </div>  
       </div>
     </script>
   </div>

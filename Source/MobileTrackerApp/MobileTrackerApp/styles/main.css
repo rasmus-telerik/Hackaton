@@ -13,12 +13,42 @@ body, html {
   height:30px;
 }
 
-.header-button{
+.task-button{
   height:25px;
   line-height:0;
   margin-bottom: 0px !important;
   margin-top: 0px !important;
-  top: 7px;
+  top: -20px;
+}
+
+.task-element>div{
+  display:inline-block;
+}
+
+#tasks .km-widget.km-listview.km-list>li{
+  padding:0px;
+}
+
+.task-description{
+  width:60%;
+  margin-left:5px;
+}
+
+.task-description>*{
+  display:block;
+}
+
+.task-description h3{
+  margin-left:0px;
+  margin-bottom:0px;
+}
+
+task-element:first-child{
+  width:15%;
+}
+
+task-element:last-child{
+  width:15%;
 }
 
 .task-element h3{
