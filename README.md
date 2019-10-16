@@ -9,7 +9,7 @@ Team members:
 ------|------|------
 Mariya Rashkovska |	Mariya.Rashkovska@telerik.com |	Business
 Nikolaj Wahl-Rasmussen |	nikolaj.wahl-rasmussen@telerik.com |Business
-Kalin Milanov |	kalin.milanov@telerik.com |	Design
+
 Ivan Stefanov |	ivan.stefanov@telerik.com	| Engineering
 Rasmus Svendsen |	svendsen@telerik.com |	Engineering
 Boyko Karadzhov |	Boyko.Karadzhov@telerik.com |	Engineering
